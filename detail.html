@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>项目详情</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="app">
+    <div class="detail-nav">
+      <span class="back" onclick="location.href='index.html'">&#8249;</span>
+      <span>项目详情</span>
+    </div>
+    <div class="project-detail" id="detail"></div>
+  </div>
+
+  <script src="./data.js"></script>
+  <script>
+    function getParam(name) {
+      var m = new RegExp('[?&]' + name + '=([^&]*)').exec(location.search);
+      return m ? decodeURIComponent(m[1]) : null;
+    }
+    function tags(arr, cls) {
+      return (arr || []).map(function (q) {
+        return '<div class="item-tag ' + (cls || '') + '">' + q + '</div>';
+      }).join('');
+    }
+
+    var index = parseInt(getParam('index'), 10) || 0;
+    var info = (window.PROJECTS || [])[index];
+    var el = document.getElementById('detail');
+
+    if (!info) {
+      el.innerHTML = '<div class="no-data">未找到该项目</div>';
+    } else {
+      var imgs = (info.imgList && info.imgList.length)
+        ? '<div class="img-wrapper">' + info.imgList.map(function (u) {
+            return '<div class="pic"><img src="' + u + '" alt=""></div>';
+          }).join('') + '</div>'
+        : '<div class="no-data">-</div>';
+
+      el.innerHTML =
+        '<div class="head">' +
+          '<div class="img logo"><img src="' + (info.logo || '') + '" alt=""></div>' +
+          '<div class="item-info">' +
+            '<div class="item-title">' + (info.name || '') + '</div>' +
+            '<div class="item-tag-wrapper">' + tags(info.type, 'item-tag-title') + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="info-wrapper">' +
+          '<div class="item-text">' +
+            '<div class="text-title">使用技术：</div>' +
+            '<div class="item-tag-wrapper">' + tags(info.tech) + '</div>' +
+          '</div>' +
+          '<div class="item-text">' +
+            '<div class="text-title">发行平台：</div>' +
+            '<div class="item-tag-wrapper">' + tags(info.platform) + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="head-title">项目详情</div>' +
+        '<div class="desc">' + (info.desc || '') + '</div>' +
+        '<div class="head-title">部分页面设计图</div>' +
+        imgs;
+
+      document.title = info.name || '项目详情';
+    }
+  </script>
+</body>
+</html>

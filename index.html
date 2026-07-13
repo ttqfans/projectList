@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>秋凡</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="app">
+    <div class="index">
+      <div class="bg"></div>
+      <div class="user-info">
+        <div class="user-head">
+          <div class="img logo">
+            <img src="./static/img/logo.gif" alt="logo" />
+          </div>
+          <div class="info">
+            <div class="nickname">ttqfans</div>
+            <div class="desc" id="workYears">前端</div>
+            <div class="desc">40+线上项目经验</div>
+          </div>
+        </div>
+        <div class="highlight">
+          <div class="text">项目经验覆盖餐饮、体育、医美、电商、教育、社交、NFT、区块链、ERP、SaaS等等。</div>
+          <div class="text">常用VideCoding工具：Trae、Copilot、Codex等等</div>
+        </div>
+        <div class="title-content">技术栈</div>
+        <div class="tag-wrapper">
+          <div class="tag">vue</div>
+          <div class="tag">uni-app</div>
+          <div class="tag">uniCloud</div>
+          <div class="tag">taro</div>
+          <div class="tag">electron</div>
+          <div class="tag">node.js</div>
+          <div class="tag">React Native</div>
+        </div>
+        <div class="title-content">
+          <span>联系方式</span>
+          <span class="tips">(点击复制)</span>
+        </div>
+        <div class="list-contact">
+          <div class="item" onclick="copyText('ttqfans@gmail.com')">
+            <div class="img icon">
+              <img src="./static/img/icon-email.png" alt="email" />
+            </div>
+            <div class="item-text">ttqfans@gmail.com</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="head">
+          <div class="img icon">
+            <img src="./static/img/icon-project.png" alt="project" />
+          </div>
+          <div class="title">最新项目</div>
+        </div>
+        <div class="list" id="projectList"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./data.js"></script>
+  <script>
+    // 工作年限
+    document.getElementById('workYears').textContent =
+      (new Date().getFullYear() - 2017) + '年前端';
+
+    function copyText(text) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(function () { alert('复制成功'); });
+      } else {
+        var t = document.createElement('textarea');
+        t.value = text; document.body.appendChild(t); t.select();
+        document.execCommand('copy'); document.body.removeChild(t);
+        alert('复制成功');
+      }
+    }
+
+    function tags(arr, cls) {
+      return (arr || []).map(function (q) {
+        return '<div class="item-tag ' + (cls || '') + '">' + q + '</div>';
+      }).join('');
+    }
+
+    var listEl = document.getElementById('projectList');
+    listEl.innerHTML = (window.PROJECTS || []).map(function (item, index) {
+      return (
+        '<div class="item" onclick="location.href=\'detail.html?index=' + index + '\'">' +
+          '<div class="item-head">' +
+            '<div class="img item-logo"><img src="' + (item.logo || '') + '" alt=""></div>' +
+            '<div class="item-info">' +
+              '<div class="item-title">' + (item.name || '') + '</div>' +
+              '<div class="item-tag-wrapper">' + tags(item.type, 'item-tag-title') + '</div>' +
+            '</div>' +
+            '<div class="item-btn">了解更多</div>' +
+          '</div>' +
+          '<div class="item-text">' +
+            '<div class="text-title">使用技术：</div>' +
+            '<div class="item-tag-wrapper">' + tags(item.tech) + '</div>' +
+          '</div>' +
+          '<div class="item-text">' +
+            '<div class="text-title">发行平台：</div>' +
+            '<div class="item-tag-wrapper">' + tags(item.platform) + '</div>' +
+          '</div>' +
+          '<div class="item-desc">' +
+            '<div class="desc-title">项目简介：</div>' +
+            '<div class="desc-text">' + (item.desc || '') + '</div>' +
+          '</div>' +
+        '</div>'
+      );
+    }).join('');
+  </script>
+</body>
+</html>
