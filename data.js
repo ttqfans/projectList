@@ -17,31 +17,6 @@
       "成人视频"
     ],
     "wxAppid": ""
-  }, {
-    "_id": "69fd8fd5a09a9b89b3ef69cf",
-    "name": "牦牛道",
-    "desc": "牦牛道米线点餐小程序",
-    "logo": "images/5ffc484e2588cf1f.jpg",
-    "imgList": [
-      "images/7b958545ed7e6db8.png",
-      "images/4630a3fbe9d8566c.png",
-      "images/af55864849dd648c.png",
-      "images/3004d13fff624840.png",
-      "images/a47c124ab7db8471.png",
-      "images/1a414147912a4dcb.png",
-      "images/f5b74ce2bcdee585.png"
-    ],
-    "platform": [
-      "微信小程序"
-    ],
-    "tech": [
-      "uni-app"
-    ],
-    "time": "2026-05-01",
-    "type": [
-      "点餐"
-    ],
-    "wxAppid": ""
   },
   {
     "_id": "69fd8ed5149854510cad71f9",
