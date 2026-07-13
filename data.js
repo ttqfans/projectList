@@ -1,5 +1,23 @@
 ﻿window.PROJECTS = [
   {
+    "_id": "69fd8fd5a09a9b89b312345f",
+    "name": "盈播社区",
+    "desc": "成人视频网站，涉及到视频点播、直播、游戏充值/返点、VIP等等",
+    "logo": "images/yingbo.png",
+    "imgList": [
+    ],
+    "platform": [
+      "H5"
+    ],
+    "tech": [
+      "uni-app"
+    ],
+    "time": "2026-05-01",
+    "type": [
+      "成人视频"
+    ],
+    "wxAppid": ""
+  }, {
     "_id": "69fd8fd5a09a9b89b3ef69cf",
     "name": "牦牛道",
     "desc": "牦牛道米线点餐小程序",
